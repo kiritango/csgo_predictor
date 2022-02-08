@@ -8,7 +8,7 @@ All data in this project has been extracted from an Internet resource HLTV.org, 
 - Tournaments
 - Stats of teams based on previous 30 days of performance
 
-All csv files are available in "data" folder.
+All csv files are available [here](https://github.com/kiritango/csgo_predictor/tree/main/data).
 
 # Data processing
 # Modelling
