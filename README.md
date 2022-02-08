@@ -5,5 +5,5 @@ Since I'm a big fan of professional CS:GO and recently started to learn data sci
 # Data collection
 All data in this project has been extracted from an Internet resource HLTV.org, specializing in collecting various statistics of professional esports matches. For scraping the data I've used my module hltv_scraper.
 # Data processing
-# Model creation
-# Cocnlusions
+# Modelling
+# Conclusions
