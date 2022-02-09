@@ -28,8 +28,7 @@ However, when we look into their performance only during big tournaments the gre
 
 So, as we can see, team from Asia have absolutely opposite results on big events (~30% win/ 70% loss), while team from Europe still shows quite strong performance (60% win/ 40% loss). According to this, my theory is confirmed and addition of new feature "region" seems necessary. 
 
-## Classification of events
-
+## Classification of tournaments
 Another thing that potentially plays big role in teams performance is an event. So, I've added new feature "importance" describing how big and important tournaments are. The importance takes following values:
 - 1 : Tournaments with prize less than 50k$;
 - 2 : Tournaments with prize more than 50k$ or qualifications on bigger events;
@@ -56,4 +55,15 @@ Some addition actions with the data:
 - One-hot encoding of categorical data (team regions, map).
 
 # Modelling
+
+As a machine learning algorithm, it was decided to use Random Forest. The first step was to build a basic model with max_depth 12 and default parameters. The accuracy of this model in the test sample was not very high - about 62%. Below is a histogram of the features' importance for a better understanding of the model.
+
+![image](https://user-images.githubusercontent.com/97898643/153235451-506ad66c-f72b-485b-a410-f6870ef8d1da.png)
+
+As we can see, the greatest amount of information is provided by the statistics of the teams, such as the ratio of kills/deaths, the rating and the number of cards played over the last month. On the other hand, the least important feature was the region of the teams.
+
+The next step was to train the basic model on a smaller number of features. To reduce the dimension of the dataset I've used PCA.
+
+##
+
 # Conclusions
