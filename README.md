@@ -56,13 +56,31 @@ Some addition actions with the data:
 
 # Modelling
 
+## Random Forest
+
 As a machine learning algorithm, it was decided to use Random Forest. The first step was to build a basic model with max_depth 12 and default parameters. The accuracy of this model in the test sample was not very high - about 62%. Below is a histogram of the features' importance for a better understanding of the model.
 
 ![image](https://user-images.githubusercontent.com/97898643/153235451-506ad66c-f72b-485b-a410-f6870ef8d1da.png)
 
 As we can see, the greatest amount of information is provided by the statistics of the teams, such as the ratio of kills/deaths, the rating and the number of cards played over the last month. On the other hand, the least important feature was the region of the teams.
 
+## PCA
+
 The next step was to train the basic model on a smaller number of features. To reduce the dimension of the dataset I've used PCA.
+
+Below is result of using that method.
+
+![image](https://user-images.githubusercontent.com/97898643/153249367-e693c8a7-2e22-4942-b889-80565b8a58d8.png)
+
+If you look at the above graph, it turns out that using PCA to move from 30 features to 20 allows to explain 95% of the variance of the data. The remaining 10 features explain less than 5% of the variance, which means that they can be discarded. However, using fewer features did not give a significant increase in the accuracy of the model.
+
+## Parameters
+
+The final step was to optimize the hyperparameters of the model using the Random search algorithm. The analysis of the values of hyperparameters is presented below.
+
+![image](https://user-images.githubusercontent.com/97898643/153250699-c3a150c5-f6d7-4691-a530-06214acf5413.png)
+
+Based on the graphs presented above, it can be concluded that the values of hyperparameters have little effect on the performance of the model. Therefore, the use of the selected parameters did not increase the accuracy of the test sample.
 
 ##
 
