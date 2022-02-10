@@ -3,7 +3,7 @@ A data science project on predicting professional CS:GO matches.
 # Intro
 Since I'm a big fan of professional CS:GO and recently started to learn data science, I've decided to combine these 2 interests into a project. The result of the project supposed to be a model based on data about teams, maps and tournaments. Doing this project, I don't expect great accuracy of my model because there are much more different factors reflecting on teams' performance than just statistics. The main goal of the project is to experience all stages of work with raw data.  
 # Data collection
-All data in this project has been extracted from an Internet resource HLTV.org, specializing in collecting various statistics of professional esports matches. For scraping the data I've used my module [hltv_scraper](https://github.com/kiritango/hltv_scraper). Since alignment of forces in CS:GO tend to change quite frequiently, I've decided to use data only for the past year. Here some information that I got from HLTV.org: 
+All data in this project has been extracted from an Internet resource HLTV.org, specializing in collecting various statistics of professional esports matches. For scraping the data I've used my module [hltv_scraper](https://github.com/kiritango/hltv_scraper). Since alignment of forces in CS:GO tend to change quite frequiently, I've decided to use data only for the past year. Here some information that I manaaged to get from HLTV.org: 
 - Matches
 - Tournaments
 - Stats of teams based on previous 30 days of performance
@@ -31,7 +31,7 @@ So, as we can see, team from Asia have absolutely opposite results on big events
 ## Classification of tournaments
 Another thing that potentially plays big role in teams performance is an event. So, I've added new feature "importance" describing how big and important tournaments are. The importance takes following values:
 - 1 : Tournaments with prize less than 50k$;
-- 2 : Tournaments with prize more than 50k$ or qualifications on bigger events;
+- 2 : Tournaments with prize more than 50k$ or qualifications for bigger events;
 - 3 : Tournaments with prize more than 100k$;
 - 4 : Tournaments with prize more than 250k$.
 
@@ -56,13 +56,15 @@ Some addition actions with the data:
 
 # Modelling
 
+For a more detailed picture of working with data you can go [here]
+
 ## Random Forest
 
 As a machine learning algorithm, it was decided to use Random Forest. The first step was to build a basic model with max_depth 12 and default parameters. The accuracy of this model in the test sample was not very high - about 62%. Below is a histogram of the features' importance for a better understanding of the model.
 
 ![image](https://user-images.githubusercontent.com/97898643/153235451-506ad66c-f72b-485b-a410-f6870ef8d1da.png)
 
-As we can see, the greatest amount of information is provided by the statistics of the teams, such as the ratio of kills/deaths, the rating and the number of cards played over the last month. On the other hand, the least important feature was the region of the teams.
+As we can see, the greatest amount of information is provided by the statistics of the teams, such as the ratio of kills/deaths, the rating and the number of maps played over the previous month. On the other hand, the least important feature was the region of the teams.
 
 ## PCA
 
@@ -74,14 +76,14 @@ Below is result of using that method.
 
 If you look at the above graph, it turns out that using PCA to move from 30 features to 20 allows to explain 95% of the variance of the data. The remaining 10 features explain less than 5% of the variance, which means that they can be discarded. However, using fewer features did not give a significant increase in the accuracy of the model.
 
-## Parameters
+## Hyperparameter optimization
 
 The final step was to optimize the hyperparameters of the model using the Random search algorithm. The analysis of the values of hyperparameters is presented below.
 
 ![image](https://user-images.githubusercontent.com/97898643/153250699-c3a150c5-f6d7-4691-a530-06214acf5413.png)
 
-Based on the graphs presented above, it can be concluded that the values of hyperparameters have little effect on the performance of the model. Therefore, the use of the selected parameters did not increase the accuracy of the test sample.
-
-##
+Based on the graphs presented above, it can be concluded that the values of hyperparameters have little effect on the performance of the model. Therefore, the use of the optimized parameters did not increase the accuracy on the test sample.
 
 # Conclusions
+
+Despite the fact that several approaches to model construction were considered, the most effective was the basic model with default parameters (accuracy = 0.623). However, this model cannot be used to predict the winners of the matches, since the probability that the algorithm will give the correct answer is quite low. Most likely, this is due to the fact that in addition to statistics, there are many other factors that somehow affect the outcome of the match. Nevertheless as a result of this work, I gained valuable experience in doing data science project from scratch.
